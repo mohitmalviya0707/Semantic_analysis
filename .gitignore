@@ -1,0 +1,6 @@
+__pycache__/
+.DS_Store
+*.pyc
+
+# Backup model - don't upload
+Artifacts/BiGRU_Model_backup.keras
