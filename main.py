@@ -15,27 +15,20 @@ import re
 
 
 
-"""
-1. We are going to make some constants like:
-A. Model Path (BiGRU)
-B. Tokenizer Path
-C. Max Sequence Length
-D. Emotion Labels
-E. Emotion emojis
-"""
-#A. Model Path (BiGRU)
+
+ Model Path (BiGRU)
 model_path = "Artifacts/BiGRU_Model.keras"
 
-#B. Tokenizer Path
+ Tokenizer Path
 tokenizer_path = "Artifacts/tokenizer.pkl"
 
-#C. Max Sequence Length
+ Max Sequence Length
 max_sequence_length = 50
 
-#D. Emotion Labels
+ Emotion Labels
 emotion_labels = ["sadness", "joy", "love", "anger", "fear", "surprise"]
 
-#E. Emotion emojis
+
 EMOTION_EMOJIS = {
     "sadness": "😢",
     "joy": "😄",
@@ -47,14 +40,6 @@ EMOTION_EMOJIS = {
 
 
 
-"""
-2. Preprocess the upcoming text
-Cleans raw text so it matches the format used while training.
-A. Convert the text to lowercase. -done
-B. Remove apostrophes (e.g can't -> cant). -done
-C. Remove Special Characters and Punctuation. -done
-D. Remove extra spaces -done
-"""
 
 def preprocess_text(text: str)->str:
     text = text.lower()
@@ -64,12 +49,6 @@ def preprocess_text(text: str)->str:
     return text
 
 
-"""
-3. Request and Response Schemas
-A. Text Input -> Input schema the text sent by user. -done
-B. Prediciton Response -> Output schema the emotion to predict. -done
-C. Health Response (Server health check)
-"""
 
 class TextInput(BaseModel):
     text : str = Field(
@@ -90,10 +69,7 @@ class HealthResponse(BaseModel):
     status: str
     model_loaded: bool
 
-"""
-4. Model Loading and LifeSpan Management
-Load the model and toknizer once the server starts up.
-"""
+
 dl_model = {} #{1. BiGRU, 2. Tokenizer}-> True , {} -> False
 
 @asynccontextmanager
